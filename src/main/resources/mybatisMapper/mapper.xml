@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.cqu.dao.UserMapper">
+<select id="selectBook" parameterType="int"  resultType="com.cqu.entity.Book">
+<!-- select book_id,book_class,book_publish,book_author,book_name,book_price,book_borrow from BOOK;
+ -->
+select book_id,book_class,book_publish,book_author,book_name,book_price,book_borrow from BOOK
+</select>
+
+<select id="selectBookByName_ID" resultType="com.cqu.entity.Book" >
+select book_id,book_class,book_publish,book_author,book_name,book_price,book_borrow from BOOK
+where book_id like '%${bookID}%' and book_name like '%${bookName}%'
+</select>
+
+<select id="selectByBorrow" resultType="com.cqu.entity.Book">
+ select book_id,book_class,book_publish,book_author,book_name,book_price,book_borrow 
+ from book where book_borrow = #{borrow ,jdbcType=INTEGER}
+</select>
+<select id="selectBookClass"  resultType="com.cqu.entity.BookClass">
+select book_class from book_class where book_class like '%${bookclassName}%'
+</select>
+<select id="selectReader" resultType="com.cqu.entity.Reader">
+select reader_id,reader_name,reader_college,reader_phone，reader_pwd from
+reader where reader_id like '%${readerID}%' and reader_name like'%${readerName}%'
+</select>
+</mapper>
